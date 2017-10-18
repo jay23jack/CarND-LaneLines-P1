@@ -23,9 +23,16 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of a few steps:
+1. converted the images to grayscale and applied gaussian smoothing
+1. used Canny Edge Detection to find the pixels of the edges
+1. used a four sided polygon to filter out pixels from the region of interest
+1. run Hough Line Gransform to detect line segments from the pixels
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by:
+1. partition line segments into left lines and right lines based on the X axis
+1. average left line segments by extrapolating each segment to a full line and calcuating the x_low and x_high, and then averaging them based on segment length.  
+1. in the average function, I also exclude segments with absolute slope angle less than 20 degree, to account for some horizontal white lines in the second video.
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
@@ -34,14 +41,12 @@ If you'd like to include images to show how the pipeline works, here is how to i
 
 ### 2. Identify potential shortcomings with your current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+Potential shortcomings include:
+1. the four sided polygon may not be generalizable.  I used hard-coded ratio to find the polygon.
+1. the average function is a bit ad-hoc. 
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+Possible improvements:
+1. the pipeline only processes images individually and didn't leverage adjacent images and the fact that lanes are continuous. that can make the lane prediction more smooth. 
