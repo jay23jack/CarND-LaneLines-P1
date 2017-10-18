@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
+[image1]: ./examples/pipeline.png
 
 ---
 
@@ -34,7 +34,7 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 1. average left line segments by extrapolating each segment to a full line and calcuating the x_low and x_high, and then averaging them based on segment length.  
 1. in the average function, I also exclude segments with absolute slope angle less than 20 degree, to account for some horizontal white lines in the second video.
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+Here're the images to show how the pipeline works: 
 
 ![alt text][image1]
 
